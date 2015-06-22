@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body, #google-map {
+            height: 100%;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+        function createLoadPromise() {
+            return new Promise( function(resolve, reject) {
+                window.addEventListener('load', function() {
+                    resolve();
+                });
+
+                window.addEventListener('error', function() {
+                    reject();
+                });
+            });
+        }
+
+        function createNavigatorPromise() {
+            return new Promise( function(resolve, reject) {
+                window.navigator.geolocation.getCurrentPosition(function(obj) {
+                    resolve(obj);
+                }, function() {
+                        reject();
+                        }
+                );
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <div id="google-map"></div>
+</body>
+</html>

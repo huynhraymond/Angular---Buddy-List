@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="buddy.js"></script>
+    <script>
+        angular.module('myApp', []).controller('myController', function($scope) {
+            /*
+            $scope.username = '';
+            $scope.first = '';
+            $scope.last = '';
+            $scope.email = '';
+            $scope.dob = '';
+            $scope.bio = ''; */
+            $scope.buddy = {};
+            $scope.buddyList = [
+                {   user: "cuxihuynh",
+                    first: "Cuxi",
+                    last: "Huynh",
+                    email: "cuxihuynh@gmail.com",
+                    status: 'offline',
+                    dob: "Nov. 16, 2012",
+                    bio: "Love cars, trucks and Mom"
+                },
+
+                {
+                    user: 'rosytran',
+                    first: 'Rosy',
+                    last: 'Tran',
+                    email: 'rosytran@gmail.com',
+                    status: 'available',
+                    dob: 'Dec. 31, 1980',
+                    bio: 'Love cooking'
+                }
+            ];
+
+            $scope.addBuddyToList = function() {
+                $scope.buddyList.push({
+                    user: $scope.buddy.username,
+                    first: $scope.buddy.first,
+                    last: $scope.buddy.last,
+                    email: $scope.buddy.email,
+                    status: 'busy',
+                    dob: $scope.buddy.dob,
+                    bio: $scope.buddy.bio
+                });
+
+                $scope.onCancel();
+            };
+
+            $scope.removeBuddy = function(index) {
+
+                if ( confirm('Do you want to buddy from the list?') )
+                    $scope.buddyList.splice(index, 1);
+            }
+
+            $scope.onCancel = function() {
+                var div = document.querySelector('div.add-buddy-form');
+                var inputs = div.querySelectorAll('input[type="text"]');
+
+                //console.log(inputs);
+                for ( var i = 0, len = inputs.length; i < len; i++ ) {
+                    inputs[i].value = '';
+                    //console.log(inputs[i]);
+                }
+
+                div.style.display = 'none';
+            }
+        });
+    </script>
+</head>
+<body ng-controller="myController">
+
+<button type="button" class="btn btn-info btn-lg addNewBuddy">Add Buddy</button>
+
+<div class="list-container">
+    <div class="accordion" ng-repeat="buddy in buddyList">
+        <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse" href="#collapse-{{$index}}">
+                <div class="{{buddy.status}}"></div>
+                {{ buddy.first + " " + buddy.last }}
+            </a>
+        </div>
+        <div id="collapse-{{$index}}" class="accordion-body collapse">
+            <div class="accordion-inner">
+                <div>Username: {{buddy.user}}</div>
+                <div>Email: {{buddy.email}}</div>
+                <div>Birthday: {{buddy.dob}}</div>
+                <div>Bio: {{buddy.bio}}</div>
+                <button type="button" class="btn btn-danger btn-sm" ng-click="removeBuddy($index)">
+                    Remove {{buddy.first}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="input-group row add-buddy-form col-lg-4">
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="Username" ng-model="buddy.username">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="First Name" ng-model="buddy.first">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="Last Name" ng-model="buddy.last">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="Email" ng-model="buddy.email">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="available/busy/offline/online" ng-model="buddy.status">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="Birthday" ng-model="buddy.dob">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <input type="text" class="form-control" placeholder="Bio Description" ng-model="buddy.bio">
+    </div>
+    <div class="col-lg-12 add-buddy-info">
+        <div>
+            <button class="btn btn-default" type="button" ng-click="onCancel()">Cancel</button>
+            <button class="btn btn-default" type="button" ng-click="addBuddyToList()">Add Buddy</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

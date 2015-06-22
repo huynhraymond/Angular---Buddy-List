@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+
+        window.addEventListener('load', function() {
+            window.navigator.geolocation.getCurrentPosition(function(obj) {
+                var coords = obj.coords;
+            });
+        });
+
+        /*
+        var mapObj;
+        var map;
+        window.navigator.geolocation.getCurrentPosition(function(obj) {
+            console.log(obj);
+            mapObj = obj;
+        }, function() {});
+
+        function initialize(obj) {
+            var mapOptions = {
+                zoom: 8,
+                //center: new google.maps.LatLng(-34.397, 150.644)
+                center: new google.maps.LatLng(obj.coords.latitude, obj.coords.longitude);
+            };
+            map = new google.maps.Map(document.getElementById('google-map'),
+                    mapOptions);
+        }
+        */
+
+        /*
+        document.addEventListener('load', function() {
+            initialize(mapObj);
+        });  */
+
+        //google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+</head>
+<body>
+    <div id="google-map"></div>
+</body>
+</html>

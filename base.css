@@ -1,0 +1,62 @@
+
+div.add-buddy-form {
+    border: solid 1px #b9def0;
+
+    display: none;
+    position: absolute;
+    padding: 1em;
+    left: 40%;
+    top: 25%
+}
+
+div.add-buddy-info {
+    margin: .5em;
+}
+
+button.addNewBuddy {
+    margin: 1em;
+}
+
+div.list-container {
+    width: 70vw;
+}
+
+div.accordion {
+    border: solid 1px #2b542c;
+    width: 30%;
+    line-height: 2.5em;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    color: #2b2c7a;
+    background-color: #e8e8e8;
+
+    float: left;
+}
+
+div.accordion > * {
+    margin-bottom: 10px;
+}
+
+a.accordion-toggle > div {
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    float: left;
+    margin: 10px;
+}
+
+a.accordion-toggle > div.available {
+    background-color: #ffcf10;
+}
+
+a.accordion-toggle > div.busy {
+    background-color: #808080;
+}
+
+a.accordion-toggle > div.online{
+    background-color: #150bf5;
+}
+
+a.accordion-toggle > div.offline {
+    background-color: rgba(26, 62, 93, 0.59);
+}
